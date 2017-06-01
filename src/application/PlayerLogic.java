@@ -189,7 +189,7 @@ public class PlayerLogic {
 		ArrayList possibleMoves = new ArrayList();
 		ArrayList validMoveCheck;
 		for (int y = 0; y <=7; y++){ //Goes through the rows
-			for (int x = 0; x <= 7; x++){
+			for (int x = 0; x <= 7; x++){ //Goes through the column
 				validMoveCheck = validMove(board, playerPiece, y, x); 
 				if (validMoveCheck.size() > 0){
 					possibleMoves.add(y);
