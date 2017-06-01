@@ -17,7 +17,7 @@ public class PlayerLogic {
 		else
 			opponentPiece = 1;
 		
-		//Right
+		// Checks to the right of placed piece
 		try{
 			
 			if (board[indexY][indexX+1] == opponentPiece){//Checks to see if piece right to the chosen tile is an opponent piece
