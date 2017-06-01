@@ -7,6 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.canvas.Canvas;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
@@ -21,7 +22,7 @@ public class Board {
 	int[][] boardArray = new int[][]{//1 = white, 2 = black, 0 = empty
 		{0,0,0,0,0,0,0,0},
 		{0,0,0,0,0,0,0,0},
-		{0,0,0,0,1,0,0,0},
+		{0,0,0,0,1,2,2,0},
 		{0,0,0,2,2,2,0,0},
 		{0,0,2,2,2,1,1,0},
 		{0,0,0,2,2,0,0,0},
@@ -51,6 +52,8 @@ public class Board {
 		window.setTitle("Reversi");
 		window.setResizable(false);
 		window.setScene(scene);
+		
+		
 		window.show();
 	}
 	
