@@ -175,8 +175,7 @@ public class PlayerLogic {
 				}
 			}
 		}catch(Exception e){}
-		
-		
+				
 		
 		
 		
@@ -186,6 +185,7 @@ public class PlayerLogic {
 		
 		
 	}
+	
 	
 
 }

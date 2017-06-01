@@ -5,6 +5,7 @@ import java.io.IOException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
+import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -36,6 +37,7 @@ public class Board {
 		window = new Stage();
 
 		root = FXMLLoader.load(getClass().getResource("Board.fxml"));
+		System.out.println(root.getChildrenUnmodifiable());
 		root.setOnMouseClicked(e -> {
 			coordX = e.getSceneX();
 			coordY = e.getSceneY();
