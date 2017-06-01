@@ -22,8 +22,8 @@ public class Board {
 		{0,0,0,0,0,0,0,0},
 		{0,0,0,0,0,0,0,0},
 		{0,0,0,0,0,0,0,0},
-		{0,0,0,1,2,2,2,0},
-		{0,0,0,2,1,0,0,0},
+		{0,0,0,1,2,0,0,0},
+		{0,0,2,2,2,1,1,0},
 		{0,0,0,0,0,0,0,0},
 		{0,0,0,0,0,0,0,0},
 		{0,0,0,0,0,0,0,0},
@@ -38,11 +38,11 @@ public class Board {
 		root.setOnMouseClicked(e -> {
 			coordX = e.getSceneX();
 			coordY = e.getSceneY();
-			System.out.println(boardArray[4][3]);
-			System.out.println(playLogic.validMove(boardArray, getYTile(), getXTile(), turn));
+			System.out.println(playLogic.validMove(boardArray, turn, getYTile(), getXTile()));
 			
 
 			System.out.println(Integer.toString(getYTile()) + ", " + Integer.toString(getXTile()));
+			System.out.println(boardArray[getYTile()][getXTile()]);
 			//System.out.println(Integer.toString((int) coordX) + ", " + Integer.toString((int) coordY));
 
 			
