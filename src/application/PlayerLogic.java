@@ -185,7 +185,22 @@ public class PlayerLogic {
 		
 		
 	}
-	
+	public ArrayList possibleMoves(int[][] board, int playerPiece, int indexY, int indexX){
+		ArrayList possibleMoves = new ArrayList();
+		ArrayList validMoveCheck;
+		for (int y = 0; y <=7; y++){ //Goes through the rows
+			for (int x = 0; x <= 7; x++){
+				validMoveCheck = validMove(board, playerPiece, y, x); 
+				if (validMoveCheck.size() > 0){
+					possibleMoves.add(y);
+					possibleMoves.add(x);
+				}
+			}
+		}
+		
+		return possibleMoves;
+		
+	}
 	
 
 }

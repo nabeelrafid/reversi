@@ -38,6 +38,7 @@ public class Board {
 
 		root = FXMLLoader.load(getClass().getResource("Board.fxml"));
 		System.out.println(root.getChildrenUnmodifiable());
+		System.out.println(playLogic.possibleMoves(boardArray, turn, getYTile(), getXTile()));
 		root.setOnMouseClicked(e -> {
 			coordX = e.getSceneX();
 			coordY = e.getSceneY();
