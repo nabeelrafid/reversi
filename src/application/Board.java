@@ -8,14 +8,14 @@ import javafx.scene.Scene;
 public class Board {
 	Parent root;
 	Stage window;
-	int[][] boardArray = new int[][]{ // 0 = empty,1 = white, 2 = black
+	int[][] board = new int[][]{ // 0 = empty,1 = white, 2 = black
 		{0,0,0,0,0,0,0,0},
 		{0,0,0,0,0,0,0,0},
-		{0,0,0,0,1,2,2,0},
-		{0,0,0,2,2,2,0,0},
-		{0,0,2,2,2,1,1,0},
-		{0,0,0,2,2,0,0,0},
-		{0,0,0,1,0,0,0,0},
+		{0,0,0,0,0,0,0,0},
+		{0,0,0,1,2,0,0,0},
+		{0,0,0,2,1,0,0,0},
+		{0,0,0,0,0,0,0,0},
+		{0,0,0,0,0,0,0,0},
 		{0,0,0,0,0,0,0,0},
 	};
 	double coordX, coordY;
@@ -32,10 +32,10 @@ public class Board {
 		root.setOnMouseClicked(e -> {
 			int tileX = getXTile(e.getSceneX());
 			int tileY = getYTile(e.getSceneY());
-			ArrayList piecesToFlip = playLogic.validMove(boardArray, turn, tileX, tileY);
+			ArrayList piecesToFlip = playLogic.validMove(board, turn, tileX, tileY);
 			
-			System.out.println(Integer.toString(tileX) + "," + Integer.toString(tileY));
-			System.out.println(piecesToFlip);
+			System.out.println("player move: " + Integer.toString(tileX) + "," + Integer.toString(tileY));
+			System.out.println("pieces to flip: " + piecesToFlip);
 		});
 		
 		Scene scene = new Scene(root);
