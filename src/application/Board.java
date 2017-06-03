@@ -21,7 +21,7 @@ public class Board {
 	double coordX, coordY;
 	
 	public void display() throws Exception {
-		PlayerLogic playLogic = new PlayerLogic();
+		GameLogic playLogic = new GameLogic();
 		
 		// setting up the board
 		window = new Stage();

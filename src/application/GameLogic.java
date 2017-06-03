@@ -2,7 +2,7 @@ package application;
 
 import java.util.ArrayList;
 
-public class PlayerLogic {
+public class GameLogic {
 	public ArrayList validMove(int[][] board, int playerPiece, int indexY, int indexX){
 		ArrayList piecesToFlip = new ArrayList();
 		boolean validDirection = false;
