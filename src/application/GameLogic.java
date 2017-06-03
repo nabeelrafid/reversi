@@ -369,6 +369,26 @@ public class GameLogic {
 		return movesX;
 	}
 	
+	public ArrayList unpackArrayY(ArrayList array){
+		ArrayList arrayY = new ArrayList();
+
+		
+		for (int y = 0; y < array.size(); y += 2){
+			arrayY.add(array.get(y));
+		}
+		return arrayY;
+	}
+	
+	public ArrayList unpackArrayX(ArrayList array){
+		ArrayList arrayX = new ArrayList();
+
+		
+		for (int x = 0; x < array.size(); x += 2){
+			arrayX.add(array.get(x));
+		}
+		return arrayX;
+	}
+	
 	public ArrayList possibleMoves(int[][] board, int playerPiece){
 		ArrayList possibleMoves = new ArrayList();
 		ArrayList validMoveCheck;

@@ -41,6 +41,7 @@ public class Board {
 			System.out.println("player move: " + Integer.toString(tileY) + "," + Integer.toString(tileX));
 			System.out.println("tile element: " + Integer.toString(board[tileY][tileX]));
 			System.out.println("pieces to flip: " + piecesToFlip);
+			printBoard();
 		
 		});
 		
@@ -92,6 +93,16 @@ public class Board {
 		}
 		
 		return tileY;
+	}
+	
+	public void printBoard(){ // for testing purposes
+		for (int y = 0; y <= 7; y++){
+			System.out.println("");
+			for (int x = 0; x <= 7; x++){
+				System.out.print(board[y][x]);
+				System.out.print(",");
+			}
+		}
 	}
 
 }
