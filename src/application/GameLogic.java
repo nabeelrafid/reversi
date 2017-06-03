@@ -325,7 +325,7 @@ public class GameLogic {
 				if (validDirection) {
 
 					for (int i = indexX + 1; i < finalIndexX && indexY < finalIndexY; i++){
-						System.out.println("loop entered");
+						
 						piecesToFlip.add(indexY); 
 						piecesToFlip.add(i);
 						indexY ++;
@@ -335,7 +335,10 @@ public class GameLogic {
 			}
 		} catch(Exception e) {}//NoOp
 		
-				
+		if (piecesToFlip.size() > 0){
+			piecesToFlip.add(indexYTemp);
+			piecesToFlip.add(indexX);
+		}
 		
 		
 		

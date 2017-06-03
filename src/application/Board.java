@@ -48,7 +48,7 @@ public class Board {
 			System.out.println("pieces to flip: " + piecesToFlip);*/
 			
 			if (skips != 2){
-				printBoard();
+				
 				if (turn == 1){
 					if (playLogic.possibleMoves(board, turn).size() > 0){
 						skips = 0; //Resets the number of skips if there are valid moves
@@ -60,7 +60,7 @@ public class Board {
 					}else{
 						skips ++;
 					}
-				}else{ // turn for black
+				}if (turn == 2){ // turn for black
 					if (playLogic.possibleMoves(board, turn).size() > 0){
 						skips = 0; //Resets the number of skips if there are valid moves
 						computerMove = compAI.randomAlgorithm(board, turn);
@@ -68,6 +68,9 @@ public class Board {
 						computerX = (int) computerMove.get(1);
 						if (playLogic.validMove(board, turn, computerY, computerX).size() > 0){
 							playLogic.flipPieces(board, playLogic.validMove(board, turn, computerY, computerX), turn);
+							turn = 1;
+							printBoard();
+							System.out.println("");
 						}
 					}else{
 						skips ++;
