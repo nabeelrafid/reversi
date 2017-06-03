@@ -20,6 +20,10 @@ public class Board {
 		{0,0,0,0,0,0,0,0},
 	};
 	double coordX, coordY;
+	int turn = 1; // setting the turn to white
+	int skips = 0; // initializing the number of skips to zero
+	int computerY;
+	int computerX;
 	
 	public void display() throws Exception {
 		GameLogic playLogic = new GameLogic();
@@ -30,18 +34,49 @@ public class Board {
 		root = FXMLLoader.load(getClass().getResource("Board.fxml"));
 		System.out.println(root.getChildrenUnmodifiable());
 		
-		int turn = 1; // setting the turn to white
+		
 		root.setOnMouseClicked(e -> {
 			int tileX = getXTile(e.getSceneX());
 			int tileY = getYTile(e.getSceneY());
 			ArrayList piecesToFlip = playLogic.validMove(board, turn, tileY, tileX);
+			ArrayList computerMove;
 			
-			System.out.println("");
+			/*System.out.println("");
 			System.out.println("Random move: " + compAI.randomAlgorithm(board, turn));
 			System.out.println("player move: " + Integer.toString(tileY) + "," + Integer.toString(tileX));
 			System.out.println("tile element: " + Integer.toString(board[tileY][tileX]));
-			System.out.println("pieces to flip: " + piecesToFlip);
-			printBoard();
+			System.out.println("pieces to flip: " + piecesToFlip);*/
+			
+			if (skips != 2){
+				printBoard();
+				if (turn == 1){
+					if (playLogic.possibleMoves(board, turn).size() > 0){
+						skips = 0; //Resets the number of skips if there are valid moves
+						if (piecesToFlip.size() > 0){
+							playLogic.flipPieces(board, piecesToFlip, turn);
+							turn = 2;
+							
+						}else{} //NoOp wait for valid input
+					}else{
+						skips ++;
+					}
+				}else{ // turn for black
+					if (playLogic.possibleMoves(board, turn).size() > 0){
+						skips = 0; //Resets the number of skips if there are valid moves
+						computerMove = compAI.randomAlgorithm(board, turn);
+						computerY = (int) computerMove.get(0);
+						computerX = (int) computerMove.get(1);
+						if (playLogic.validMove(board, turn, computerY, computerX).size() > 0){
+							playLogic.flipPieces(board, playLogic.validMove(board, turn, computerY, computerX), turn);
+						}
+					}else{
+						skips ++;
+					}
+				}
+			}else{
+				System.out.println("Game over!");
+			}
+			
 		
 		});
 		

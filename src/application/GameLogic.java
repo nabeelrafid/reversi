@@ -38,11 +38,9 @@ public class GameLogic {
 					}
 				}
 				
-				System.out.println("direction is " + validDirection);
-				
+								
 				if (validDirection) {
 					for (int i = indexX + 1; i < index; i++){
-						System.out.println("loop entered");
 						piecesToFlip.add(indexY);
 						piecesToFlip.add(i);
 					}
@@ -71,7 +69,7 @@ public class GameLogic {
 					}
 				}
 				
-				System.out.println("direction is " + validDirection);
+				
 				
 				if (validDirection) {
 					for (int i = indexX - 1; i > index; i--){
@@ -103,7 +101,7 @@ public class GameLogic {
 					}
 				}
 				
-				System.out.println("direction is" + validDirection);
+			
 				
 				if (validDirection){
 					for (int i = indexY + 1; i < index; i++) {
@@ -132,11 +130,11 @@ public class GameLogic {
 						break;
 					}
 				}
-				System.out.println(validDirection);
+				
 				if (validDirection){
-					System.out.println("success");
+				
 					for (int i = indexX - 1; i > index; i--){
-						System.out.println("loop entered");
+						
 						piecesToFlip.add(indexY);
 						piecesToFlip.add(i);
 					}
@@ -164,11 +162,11 @@ public class GameLogic {
 						break;
 					}
 				}
-				System.out.println(validDirection);
+				
 				if (validDirection){
-					System.out.println("success");
+		
 					for (int i = indexY - 1; i > index; i--){
-						System.out.println("loop entered");
+				
 						piecesToFlip.add(i);
 						piecesToFlip.add(indexX);
 					}
@@ -200,13 +198,13 @@ public class GameLogic {
 					indexY --; 
 				}
 				
-				System.out.println("diagonal up left is " + validDirection);
+			
 				
 				indexY = indexYTemp; // resets the indexY value for collection of the pieces to flip
 				indexY -= 1;
 				if (validDirection) {
 					for (int i = indexX - 1; i > finalIndexX && indexY > finalIndexY; i--){
-						System.out.println("loop entered");
+						
 						piecesToFlip.add(indexY); 
 						piecesToFlip.add(i);
 						indexY --;
@@ -239,13 +237,13 @@ public class GameLogic {
 					indexY --; 
 				}
 				
-				System.out.println("diagonal up right is " + validDirection);
+				
 				
 				indexY = indexYTemp; // resets the indexY value for collection of the pieces to flip
 				indexY -= 1;
 				if (validDirection) {
 					for (int i = indexX + 1; i < finalIndexX && indexY > finalIndexY; i++){
-						System.out.println("loop entered");
+						
 						piecesToFlip.add(indexY); 
 						piecesToFlip.add(i);
 						indexY --;
@@ -280,14 +278,14 @@ public class GameLogic {
 					indexY ++; 
 				}
 				
-				System.out.println("diagonal down left is " + validDirection);
+				
 				
 				indexY = indexYTemp; // resets the indexY value for collection of the pieces to flip
 				indexY += 1;
 				if (validDirection) {
-					System.out.println(Integer.toString(finalIndexY) + ", " + Integer.toString(finalIndexX));
+					
 					for (int i = indexX - 1; i > finalIndexX && indexY < finalIndexY; i--){
-						System.out.println("loop entered");
+						
 						piecesToFlip.add(indexY); 
 						piecesToFlip.add(i);
 						indexY ++;
@@ -320,12 +318,12 @@ public class GameLogic {
 					indexY ++; 
 				}
 				
-				System.out.println("diagonal down left is " + validDirection);
+				
 				
 				indexY = indexYTemp; // resets the indexY value for collection of the pieces to flip
 				indexY += 1;
 				if (validDirection) {
-					System.out.println(Integer.toString(finalIndexY) + ", " + Integer.toString(finalIndexX));
+
 					for (int i = indexX + 1; i < finalIndexX && indexY < finalIndexY; i++){
 						System.out.println("loop entered");
 						piecesToFlip.add(indexY); 
@@ -348,27 +346,7 @@ public class GameLogic {
 		
 	}
 	
-	// Separates piecesToFlip array into individual x and y arrays
-	public ArrayList unpackMovesArrayY(int[][]board, int playerPiece){
-		ArrayList movesY = new ArrayList();
-		ArrayList possibleMoves = possibleMoves(board, playerPiece);
-		
-		for (int y = 0; y < possibleMoves.size(); y += 2){
-			movesY.add(possibleMoves.get(y));
-		}
-		return movesY;
-	}
-	
-	public ArrayList unpackMovesArrayX(int[][]board, int playerPiece){
-		ArrayList movesX = new ArrayList();
-		ArrayList possibleMoves = possibleMoves(board, playerPiece);
-		
-		for (int x = 1; x <= possibleMoves.size(); x += 2){
-			movesX.add(possibleMoves.get(x));
-		}
-		return movesX;
-	}
-	
+	// Separates array into individual x and y arrays
 	public ArrayList unpackArrayY(ArrayList array){
 		ArrayList arrayY = new ArrayList();
 
@@ -383,7 +361,7 @@ public class GameLogic {
 		ArrayList arrayX = new ArrayList();
 
 		
-		for (int x = 0; x < array.size(); x += 2){
+		for (int x = 1; x <= array.size(); x += 2){
 			arrayX.add(array.get(x));
 		}
 		return arrayX;
@@ -407,7 +385,12 @@ public class GameLogic {
 	}
 	
 	public void flipPieces(int[][] board, ArrayList piecesToFlip, int pieceColor){
-		
+		//Unpack piecesToFlip
+		ArrayList piecesY = unpackArrayY(piecesToFlip);
+		ArrayList piecesX = unpackArrayX(piecesToFlip);
+		for (int i = 0; i < piecesY.size(); i++){
+			board[(int) piecesY.get(i)][(int) piecesX.get(i)] = pieceColor;
+		}
 	}
 	
 	
