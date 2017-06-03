@@ -7,10 +7,11 @@ public class PlayerLogic {
 		ArrayList piecesToFlip = new ArrayList();
 		boolean validDirection = false;
 		int opponentPiece;
+		int indexYTemp = indexY;// Used to maintain the value of indexY when checking diagonals
 		
-		if (board[indexY][indexX] != 0) { // if tile is not blank than it is an invalid move
+		if (board[indexY][indexX] != 0)  // if tile is not blank than it is an invalid move
 			return piecesToFlip; // return the array which at this point is empty
-		}
+
 		
 		if (playerPiece == 1) { // setting the opponent piece as opposite to the player piece
 			opponentPiece = 2;
@@ -175,6 +176,167 @@ public class PlayerLogic {
 				}
 			}
 		}catch(Exception e){}
+		
+		// checks diagonally up left of placed piece
+		try{
+			
+			if (board[indexY - 1][indexX-1] == opponentPiece) { // checks to see if piece diagonally up left to the chosen tile is an opponent piece
+				int finalIndexX = 0;
+				int finalIndexY = 0;
+				indexY -= 2; // -2 compensates for the -2 used in the for loop for indexX
+				for (int i = indexX - 2; i >= 0; i--) {
+					if (board[indexY][i] == 0){ // checks to see if there is a blank space b/t the intended capture pieces
+						validDirection = false;
+						break;
+					} else if (board[indexY][i] == playerPiece) { // if there is another piece on the same line, that means two pieces surround captured pieces
+						validDirection = true;
+						finalIndexX = i;
+						finalIndexY = indexY;
+						break;
+					}else if (i == 0 || indexY == 0){
+						validDirection = false;
+						break;
+					}
+					indexY --; 
+				}
+				
+				System.out.println("diagonal up left is " + validDirection);
+				
+				indexY = indexYTemp; // resets the indexY value for collection of the pieces to flip
+				indexY -= 1;
+				if (validDirection) {
+					for (int i = indexX - 1; i > finalIndexX && indexY > finalIndexY; i--){
+						System.out.println("loop entered");
+						piecesToFlip.add(indexY); 
+						piecesToFlip.add(i);
+						indexY --;
+					}
+					//validDirection = false;
+				}
+			}
+		} catch(Exception e) {System.out.println(e);}//NoOp
+		
+		// checks diagonally up right of placed piece
+		try{
+			
+			if (board[indexY - 1][indexX + 1] == opponentPiece) { // checks to see if piece diagonally up left to the chosen tile is an opponent piece
+				int finalIndexX = 0;
+				int finalIndexY = 0;
+				indexY -= 2; // -2 compensates for the -2 used in the for loop for indexX
+				for (int i = indexX + 2; i <= 7; i++) {
+					if (board[indexY][i] == 0){ // checks to see if there is a blank space b/t the intended capture pieces
+						validDirection = false;
+						break;
+					} else if (board[indexY][i] == playerPiece) { // if there is another piece on the same line, that means two pieces surround captured pieces
+						validDirection = true;
+						finalIndexX = i;
+						finalIndexY = indexY;
+						break;
+					}else if (i == 7 || indexY == 0){
+						validDirection = false;
+						break;
+					}
+					indexY --; 
+				}
+				
+				System.out.println("diagonal up right is " + validDirection);
+				
+				indexY = indexYTemp; // resets the indexY value for collection of the pieces to flip
+				indexY -= 1;
+				if (validDirection) {
+					for (int i = indexX + 1; i < finalIndexX && indexY > finalIndexY; i++){
+						System.out.println("loop entered");
+						piecesToFlip.add(indexY); 
+						piecesToFlip.add(i);
+						indexY --;
+					}
+					//validDirection = false;
+				}
+			}
+		} catch(Exception e) {System.out.println(e);}//NoOp
+		
+		indexY = indexYTemp; // resets value of indexY
+		
+		// checks diagonally down left of placed piece
+		try{
+			
+			if (board[indexY + 1][indexX - 1] == opponentPiece) { // checks to see if piece diagonally up left to the chosen tile is an opponent piece
+				int finalIndexX = 0;
+				int finalIndexY = 0;
+				indexY += 2; // -2 compensates for the -2 used in the for loop for indexX
+				for (int i = indexX - 2; i >= 0; i--) {
+					if (board[indexY][i] == 0){ // checks to see if there is a blank space b/t the intended capture pieces
+						validDirection = false;
+						break;
+					} else if (board[indexY][i] == playerPiece) { // if there is another piece on the same line, that means two pieces surround captured pieces
+						validDirection = true;
+						finalIndexX = i;
+						finalIndexY = indexY;
+						break;
+					}else if (i == 0 || indexY == 7){
+						validDirection = false;
+						break;
+					}
+					indexY ++; 
+				}
+				
+				System.out.println("diagonal down left is " + validDirection);
+				
+				indexY = indexYTemp; // resets the indexY value for collection of the pieces to flip
+				indexY += 1;
+				if (validDirection) {
+					System.out.println(Integer.toString(finalIndexY) + ", " + Integer.toString(finalIndexX));
+					for (int i = indexX - 1; i > finalIndexX && indexY < finalIndexY; i--){
+						System.out.println("loop entered");
+						piecesToFlip.add(indexY); 
+						piecesToFlip.add(i);
+						indexY ++;
+					}
+					//validDirection = false;
+				}
+			}
+		} catch(Exception e) {System.out.println(e);}//NoOp
+		
+		// checks diagonally down right of placed piece
+		try{
+			
+			if (board[indexY + 1][indexX + 1] == opponentPiece) { // checks to see if piece diagonally up left to the chosen tile is an opponent piece
+				int finalIndexX = 0;
+				int finalIndexY = 0;
+				indexY += 2; // -2 compensates for the -2 used in the for loop for indexX
+				for (int i = indexX + 2; i <= 7; i++) {
+					if (board[indexY][i] == 0){ // checks to see if there is a blank space b/t the intended capture pieces
+						validDirection = false;
+						break;
+					} else if (board[indexY][i] == playerPiece) { // if there is another piece on the same line, that means two pieces surround captured pieces
+						validDirection = true;
+						finalIndexX = i;
+						finalIndexY = indexY;
+						break;
+					}else if (i == 7 || indexY == 7){
+						validDirection = false;
+						break;
+					}
+					indexY ++; 
+				}
+				
+				System.out.println("diagonal down left is " + validDirection);
+				
+				indexY = indexYTemp; // resets the indexY value for collection of the pieces to flip
+				indexY += 1;
+				if (validDirection) {
+					System.out.println(Integer.toString(finalIndexY) + ", " + Integer.toString(finalIndexX));
+					for (int i = indexX + 1; i < finalIndexX && indexY < finalIndexY; i++){
+						System.out.println("loop entered");
+						piecesToFlip.add(indexY); 
+						piecesToFlip.add(i);
+						indexY ++;
+					}
+					//validDirection = false;
+				}
+			}
+		} catch(Exception e) {System.out.println(e);}//NoOp
+		
 				
 		
 		

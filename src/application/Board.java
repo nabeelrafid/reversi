@@ -10,12 +10,12 @@ public class Board {
 	Stage window;
 	int[][] board = new int[][]{ // 0 = empty,1 = white, 2 = black
 		{0,0,0,0,0,0,0,0},
-		{0,0,0,0,0,0,0,0},
-		{0,0,0,0,0,0,0,0},
-		{0,0,0,1,2,0,0,0},
-		{0,0,0,2,1,0,0,0},
-		{0,0,0,0,0,0,0,0},
-		{0,0,0,0,0,0,0,0},
+		{0,1,2,0,0,0,0,0},
+		{0,2,2,2,0,2,0,0},
+		{0,0,2,2,2,0,0,0},
+		{0,0,0,2,0,1,0,1},
+		{0,0,1,0,1,0,2,0},
+		{0,0,0,0,0,2,0,0},
 		{0,0,0,0,0,0,0,0},
 	};
 	double coordX, coordY;
@@ -32,9 +32,11 @@ public class Board {
 		root.setOnMouseClicked(e -> {
 			int tileX = getXTile(e.getSceneX());
 			int tileY = getYTile(e.getSceneY());
-			ArrayList piecesToFlip = playLogic.validMove(board, turn, tileX, tileY);
+			ArrayList piecesToFlip = playLogic.validMove(board, turn, tileY, tileX);
 			
-			System.out.println("player move: " + Integer.toString(tileX) + "," + Integer.toString(tileY));
+			System.out.println("");
+			System.out.println("player move: " + Integer.toString(tileY) + "," + Integer.toString(tileX));
+			System.out.println("tile element: " + Integer.toString(board[tileY][tileX]));
 			System.out.println("pieces to flip: " + piecesToFlip);
 		});
 		
