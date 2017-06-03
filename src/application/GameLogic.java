@@ -49,7 +49,7 @@ public class GameLogic {
 					//validDirection = false;
 				}
 			}
-		} catch(Exception e) {System.out.println(e);}//NoOp
+		} catch(Exception e) {}//NoOp
 		
 		// checks to the left of place piece
 		try{
@@ -81,7 +81,7 @@ public class GameLogic {
 					//validDirection = false;
 				}
 			}
-		} catch(Exception e) {System.out.println(e);}//NoOp
+		} catch(Exception e) {}//NoOp
 		
 		
 		// checks downwards of placed piece
@@ -113,7 +113,7 @@ public class GameLogic {
 					//validDirection = false;
 				}
 			}
-		} catch(Exception e) {System.out.println(e);}//NoOp
+		} catch(Exception e) {}//NoOp
 		
 		// checks upwards of placed piece
 		try{
@@ -143,7 +143,7 @@ public class GameLogic {
 					//validDirection = false;
 				}
 			}
-		}catch(Exception e){System.out.println(e);}//NoOp
+		}catch(Exception e){}//NoOp
 		
 		
 		//Down
@@ -214,7 +214,7 @@ public class GameLogic {
 					//validDirection = false;
 				}
 			}
-		} catch(Exception e) {System.out.println(e);}//NoOp
+		} catch(Exception e) {}//NoOp
 		
 		// checks diagonally up right of placed piece
 		try{
@@ -253,7 +253,7 @@ public class GameLogic {
 					//validDirection = false;
 				}
 			}
-		} catch(Exception e) {System.out.println(e);}//NoOp
+		} catch(Exception e) {}//NoOp
 		
 		indexY = indexYTemp; // resets value of indexY
 		
@@ -295,7 +295,7 @@ public class GameLogic {
 					//validDirection = false;
 				}
 			}
-		} catch(Exception e) {System.out.println(e);}//NoOp
+		} catch(Exception e) {}//NoOp
 		
 		// checks diagonally down right of placed piece
 		try{
@@ -335,7 +335,7 @@ public class GameLogic {
 					//validDirection = false;
 				}
 			}
-		} catch(Exception e) {System.out.println(e);}//NoOp
+		} catch(Exception e) {}//NoOp
 		
 				
 		
@@ -383,6 +383,10 @@ public class GameLogic {
 		}
 		
 		return possibleMoves;
+		
+	}
+	
+	public void flipPieces(int[][] board, ArrayList piecesToFlip, int pieceColor){
 		
 	}
 	

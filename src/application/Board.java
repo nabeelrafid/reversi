@@ -1,4 +1,5 @@
 package application;
+import java.io.IOException;
 import java.util.ArrayList;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
@@ -36,11 +37,11 @@ public class Board {
 			ArrayList piecesToFlip = playLogic.validMove(board, turn, tileY, tileX);
 			
 			System.out.println("");
+			System.out.println("Random move: " + compAI.randomAlgorithm(board, turn));
 			System.out.println("player move: " + Integer.toString(tileY) + "," + Integer.toString(tileX));
 			System.out.println("tile element: " + Integer.toString(board[tileY][tileX]));
 			System.out.println("pieces to flip: " + piecesToFlip);
-			System.out.println("Random move" + compAI.randomAlgorithm(board, turn));
-
+		
 		});
 		
 		Scene scene = new Scene(root);

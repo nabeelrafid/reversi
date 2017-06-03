@@ -14,11 +14,9 @@ public class ComputerAI extends GameLogic{
 		Random rand = new Random();
 		int numberOfMoves = movesY.size();
 		int random = rand.nextInt((numberOfMoves - 1) - 0 + 1) + 0;
-		System.out.println(numberOfMoves);
-		System.out.println(random);
 		moveCoordinates.add(movesY.get(random));
 		moveCoordinates.add(movesX.get(random));
-
+		//k
 		return moveCoordinates;
 		
 	}
