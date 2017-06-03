@@ -8,7 +8,7 @@ import javafx.scene.Scene;
 public class Welcome {
 	Parent root;
 	Stage window;
-	
+	//t
 	
 	public void display() throws Exception {
 
