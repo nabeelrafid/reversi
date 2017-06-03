@@ -3,8 +3,11 @@ package application;
 import java.util.ArrayList;
 
 public class GameLogic {
+	ArrayList movesY = new ArrayList();
+	ArrayList movesX = new ArrayList();
+	ArrayList piecesToFlip;
 	public ArrayList validMove(int[][] board, int playerPiece, int indexY, int indexX){
-		ArrayList piecesToFlip = new ArrayList();
+		piecesToFlip = new ArrayList();
 		boolean validDirection = false;
 		int opponentPiece;
 		int indexYTemp = indexY;// Used to maintain the value of indexY when checking diagonals
@@ -360,9 +363,23 @@ public class GameLogic {
 			}
 		}
 		
+		unpackMovesArray(possibleMoves, movesY, movesX);
+		
 		return possibleMoves;
 		
 	}
+	
+	public void unpackMovesArray(ArrayList piecesToFlip, ArrayList movesY, ArrayList movesX){
+		for (int y = 0; y < piecesToFlip.size(); y += 2){
+			movesY.add(piecesToFlip.get(y));
+		}
+		for (int x = 1; x <= piecesToFlip.size(); x += 2){
+			movesX.add(piecesToFlip.get(x));
+		}
+		System.out.println(movesY);
+		System.out.println(movesX);
+	}
+	
 	
 
 }

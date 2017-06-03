@@ -38,6 +38,7 @@ public class Board {
 			System.out.println("player move: " + Integer.toString(tileY) + "," + Integer.toString(tileX));
 			System.out.println("tile element: " + Integer.toString(board[tileY][tileX]));
 			System.out.println("pieces to flip: " + piecesToFlip);
+			System.out.println(playLogic.movesX);
 		});
 		
 		Scene scene = new Scene(root);
