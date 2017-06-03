@@ -108,7 +108,7 @@ public class GameLogic {
 					for (int i = indexY + 1; i < index; i++) {
 						piecesToFlip.add(i);
 						piecesToFlip.add(indexX);
-						System.out.println(1);
+
 					}
 					//validDirection = false;
 				}
@@ -141,7 +141,7 @@ public class GameLogic {
 				
 						piecesToFlip.add(i);
 						piecesToFlip.add(indexX);
-						System.out.println(3);
+
 					}
 					//validDirection = false;
 				}
