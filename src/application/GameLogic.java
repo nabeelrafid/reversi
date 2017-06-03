@@ -28,14 +28,14 @@ public class GameLogic {
 					if (board[indexY][i] == 0){ // checks to see if there is a blank space b/t the intended capture pieces
 						validDirection = false;
 						break;
-					} else if (i == 7){
-						validDirection = false;
-						break;
 					} else if (board[indexY][i] == playerPiece) { // if there is another piece on the same line, that means two pieces surround captured pieces
 						validDirection = true;
 						index = i;
 						break;
-					}
+					}else if (i == 7){
+						validDirection = false;
+						break;
+					} 
 				}
 				
 								
@@ -59,14 +59,14 @@ public class GameLogic {
 					if (board[indexY][i] == 0){
 						validDirection = false;
 						break;
-					} else if (i == 0){
-						validDirection = false;
-						break;
 					} else if (board[indexY][i] == playerPiece){
 						validDirection = true;
 						index = i;
 						break;
-					}
+					} else if (i == 0){
+						validDirection = false;
+						break;
+					} 
 				}
 				
 				
@@ -91,14 +91,15 @@ public class GameLogic {
 					if (board[i][indexX] == 0){
 						validDirection = false;
 						break;
-					} else if (i == 7){
-						validDirection = false;
-						break;
+
 					} else if (board[i][indexX] == playerPiece){
 						validDirection = true;
 						index = i;
 						break;
-					}
+					}else if (i == 7){
+						validDirection = false;
+						break;
+					} 
 				}
 				
 			
@@ -107,44 +108,15 @@ public class GameLogic {
 					for (int i = indexY + 1; i < index; i++) {
 						piecesToFlip.add(i);
 						piecesToFlip.add(indexX);
+						System.out.println(1);
 					}
 					//validDirection = false;
 				}
 			}
 		} catch(Exception e) {}//NoOp
 		
-		// checks upwards of placed piece
-		try{
-			if (board[indexY][indexX-1] == opponentPiece){ // checks to see if piece above to the chosen tile is an opponent piece
-				int index = 0;
-				for (int i = indexX - 2; i >= 0; i--){
-					if (board[indexY][i] == 0){
-						validDirection = false;
-						break;
-					}else if (board[indexY][i] == playerPiece){
-						validDirection = true;
-						index = i;
-						break;
-					}else if (i == 0){
-						validDirection = false;
-						break;
-					}
-				}
-				
-				if (validDirection){
-				
-					for (int i = indexX - 1; i > index; i--){
-						
-						piecesToFlip.add(indexY);
-						piecesToFlip.add(i);
-					}
-					//validDirection = false;
-				}
-			}
-		}catch(Exception e){}//NoOp
-		
-		
-		//Down
+
+		//Check upwards of chosen piece
 		try{
 			
 			if (board[indexY - 1][indexX] == opponentPiece){//Checks to see if piece right to the chosen tile is an opponent piece
@@ -169,6 +141,7 @@ public class GameLogic {
 				
 						piecesToFlip.add(i);
 						piecesToFlip.add(indexX);
+						System.out.println(3);
 					}
 					//validDirection = false;
 				}
@@ -394,6 +367,28 @@ public class GameLogic {
 		for (int i = 0; i < piecesY.size(); i++){
 			board[(int) piecesY.get(i)][(int) piecesX.get(i)] = pieceColor;
 		}
+	}
+	
+	public int winnerChecker(int[][] board){
+		int white = 0;
+		int black = 0;
+		int tie = 3;
+		for (int y = 0; y <= 7; y++){
+			for (int x = 0; x <= 7; x++){
+				if (board[y][x] == 1)
+					white++;
+				else if (board[y][x] == 2)
+					black++;
+			}
+		}
+		
+		if (white > black)
+			return white;
+		else if (white < black)
+			return black;
+		else
+			return tie;
+					
 	}
 	
 	
