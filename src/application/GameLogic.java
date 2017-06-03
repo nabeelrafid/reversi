@@ -3,11 +3,8 @@ package application;
 import java.util.ArrayList;
 
 public class GameLogic {
-	ArrayList movesY = new ArrayList();
-	ArrayList movesX = new ArrayList();
-	ArrayList piecesToFlip;
 	public ArrayList validMove(int[][] board, int playerPiece, int indexY, int indexX){
-		piecesToFlip = new ArrayList();
+		ArrayList piecesToFlip = new ArrayList();
 		boolean validDirection = false;
 		int opponentPiece;
 		int indexYTemp = indexY;// Used to maintain the value of indexY when checking diagonals
@@ -350,7 +347,29 @@ public class GameLogic {
 		
 		
 	}
-	public ArrayList possibleMoves(int[][] board, int playerPiece, int indexY, int indexX){
+	
+	// Separates piecesToFlip array into individual x and y arrays
+	public ArrayList unpackMovesArrayY(int[][]board, int playerPiece){
+		ArrayList movesY = new ArrayList();
+		ArrayList possibleMoves = possibleMoves(board, playerPiece);
+		
+		for (int y = 0; y < possibleMoves.size(); y += 2){
+			movesY.add(possibleMoves.get(y));
+		}
+		return movesY;
+	}
+	
+	public ArrayList unpackMovesArrayX(int[][]board, int playerPiece){
+		ArrayList movesX = new ArrayList();
+		ArrayList possibleMoves = possibleMoves(board, playerPiece);
+		
+		for (int x = 1; x <= possibleMoves.size(); x += 2){
+			movesX.add(possibleMoves.get(x));
+		}
+		return movesX;
+	}
+	
+	public ArrayList possibleMoves(int[][] board, int playerPiece){
 		ArrayList possibleMoves = new ArrayList();
 		ArrayList validMoveCheck;
 		for (int y = 0; y <=7; y++){ //Goes through the rows
@@ -363,21 +382,8 @@ public class GameLogic {
 			}
 		}
 		
-		unpackMovesArray(possibleMoves, movesY, movesX);
-		
 		return possibleMoves;
 		
-	}
-	
-	public void unpackMovesArray(ArrayList piecesToFlip, ArrayList movesY, ArrayList movesX){
-		for (int y = 0; y < piecesToFlip.size(); y += 2){
-			movesY.add(piecesToFlip.get(y));
-		}
-		for (int x = 1; x <= piecesToFlip.size(); x += 2){
-			movesX.add(piecesToFlip.get(x));
-		}
-		System.out.println(movesY);
-		System.out.println(movesX);
 	}
 	
 	

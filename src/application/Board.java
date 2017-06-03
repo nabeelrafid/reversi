@@ -10,18 +10,19 @@ public class Board {
 	Stage window;
 	int[][] board = new int[][]{ // 0 = empty,1 = white, 2 = black
 		{0,0,0,0,0,0,0,0},
-		{0,1,2,0,0,0,0,0},
-		{0,2,2,2,0,2,0,0},
-		{0,0,2,2,2,0,0,0},
-		{0,0,0,2,0,1,0,1},
-		{0,0,1,0,1,0,2,0},
-		{0,0,0,0,0,2,0,0},
+		{0,0,0,0,0,0,0,0},
+		{0,0,0,0,0,0,0,0},
+		{0,0,0,1,2,0,0,0},
+		{0,0,0,2,1,0,0,0},
+		{0,0,0,0,0,0,0,0},
+		{0,0,0,0,0,0,0,0},
 		{0,0,0,0,0,0,0,0},
 	};
 	double coordX, coordY;
 	
 	public void display() throws Exception {
 		GameLogic playLogic = new GameLogic();
+		ComputerAI compAI = new ComputerAI();
 		
 		// setting up the board
 		window = new Stage();
@@ -38,7 +39,8 @@ public class Board {
 			System.out.println("player move: " + Integer.toString(tileY) + "," + Integer.toString(tileX));
 			System.out.println("tile element: " + Integer.toString(board[tileY][tileX]));
 			System.out.println("pieces to flip: " + piecesToFlip);
-			System.out.println(playLogic.movesX);
+			System.out.println("Random move" + compAI.randomAlgorithm(board, turn));
+
 		});
 		
 		Scene scene = new Scene(root);
@@ -50,7 +52,7 @@ public class Board {
 		window.show();
 	}
 	
-	public int getXTile(double coord){
+	public static int getXTile(double coord){
 		int minBoardCoord = 91;
 		int maxBoardCoord = 587;
 		int minTileCoord = 153;
@@ -70,7 +72,7 @@ public class Board {
 		return tileX;
 	}
 	
-	public int getYTile(double coord){
+	public static int getYTile(double coord){
 		int minBoardCoord = 117;
 		int maxBoardCoord = 613;
 		int minTileCoord = 179;
