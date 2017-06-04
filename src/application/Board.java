@@ -47,38 +47,41 @@ public class Board {
 			System.out.println("tile element: " + Integer.toString(board[tileY][tileX]));
 			System.out.println("pieces to flip: " + piecesToFlip);*/
 			
-			if (skips != 2){
+			//Main program
+			if (skips != 2){ //Checks for double skips
 				
-				if (turn == 1){
-					if (playLogic.possibleMoves(board, turn).size() > 0){
+				if (turn == 1){ // Checks to see if its white's turn
+					if (playLogic.possibleMoves(board, turn).size() > 0){ // Checks to see if there are any valid moves
 						skips = 0; //Resets the number of skips if there are valid moves
-						if (piecesToFlip.size() > 0){
-							playLogic.flipPieces(board, piecesToFlip, turn);
-							turn = 2;
+						if (piecesToFlip.size() > 0){ // Checks to see if player entered a valid move
+							playLogic.flipPieces(board, piecesToFlip, turn); // Flips the pieces to white
+							turn = 2; // Changes the turn to black
 							
 						}else{} //NoOp wait for valid input
-					}else{
-						skips ++;
-						turn = 2;
+					}else{ // Enters this else clause if there are no valid moves
+						System.out.println("Human is stuck!");
+						skips ++; // Increments skip by one
+						turn = 2; // Changes the turn to black
 					}
 				}if (turn == 2){ // turn for black
-					if (playLogic.possibleMoves(board, turn).size() > 0){
+					if (playLogic.possibleMoves(board, turn).size() > 0){ // Checks to see if there are any valid moves
 						skips = 0; //Resets the number of skips if there are valid moves
-						computerMove = compAI.randomAlgorithm(board, turn);
-						computerY = (int) computerMove.get(0);
+						computerMove = compAI.randomAlgorithm(board, turn); // Computer AI chooses a move
+						computerY = (int) computerMove.get(0); 
 						computerX = (int) computerMove.get(1);
-						if (playLogic.validMove(board, turn, computerY, computerX).size() > 0){
+						if (playLogic.validMove(board, turn, computerY, computerX).size() > 0){ 
 							playLogic.flipPieces(board, playLogic.validMove(board, turn, computerY, computerX), turn);
 							turn = 1;
-							printBoard();
+							printBoard(); // Print the board at the end of computers turn
 							System.out.println("");
 						}
 					}else{
-						skips ++;
-						turn = 1;
+						System.out.println("Computer is stuck!");
+						skips ++; //Increments skip by one
+						turn = 1; //Changes the turn to white
 					}
 				}
-			}else{
+			}else{ //If there are two consecutive skips
 				System.out.println("Game over!");
 				System.out.println(playLogic.winnerChecker(board)); //White = 1, black = 2, tie = 3
 			}
