@@ -48,7 +48,7 @@ public class Board {
 			System.out.println("pieces to flip: " + piecesToFlip);*/
 			
 			//Main program
-			if (skips != 2){ //Checks for double skips
+			if (skips >= 2){ //Checks for double skips
 				
 				if (turn == 1){ // Checks to see if its white's turn
 					if (playLogic.possibleMoves(board, turn).size() > 0){ // Checks to see if there are any valid moves
