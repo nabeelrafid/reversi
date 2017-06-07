@@ -6,10 +6,13 @@ import javafx.stage.Stage;
 import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.canvas.Canvas;
 
-public class Board {
-	Parent root;
+public class Board2 {
+	Group root;
 	Stage window;
+	Canvas canvas;
+	Graphics
 	int[][] board = new int[][]{ // 0 = empty,1 = white, 2 = black
 		{0,0,0,0,0,0,0,0},
 		{0,0,0,0,0,0,0,0},
@@ -33,7 +36,7 @@ public class Board {
 		// setting up the board
 		window = new Stage();
 		window.setTitle("Reversi");
-		root = FXMLLoader.load(getClass().getResource("Board.fxml"));
+		root = new Group();
 		System.out.println(root.getChildrenUnmodifiable());
 		
 		

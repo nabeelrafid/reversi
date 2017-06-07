@@ -11,6 +11,7 @@ public class Main extends Application {
 	public void start(Stage window) throws Exception {
 		Board board = new Board();
 		board.display();
+		//Board2 test = new Board2();
 	}
 
 	public static void main(String[] args) {
