@@ -3,7 +3,7 @@ package application;
 import java.util.ArrayList;
 
 public class GameLogic {
-	public ArrayList validMove(int[][] board, int playerPiece, int indexY, int indexX){
+	public static ArrayList validMove(int[][] board, int playerPiece, int indexY, int indexX){
 		ArrayList piecesToFlip = new ArrayList();
 		boolean validDirection = false;
 		int opponentPiece;
@@ -323,7 +323,7 @@ public class GameLogic {
 	}
 	
 	// Separates array into individual x and y arrays
-	public ArrayList unpackArrayY(ArrayList array){
+	public static ArrayList unpackArrayY(ArrayList array){
 		ArrayList arrayY = new ArrayList();
 
 		
@@ -333,7 +333,7 @@ public class GameLogic {
 		return arrayY;
 	}
 	
-	public ArrayList unpackArrayX(ArrayList array){
+	public static ArrayList unpackArrayX(ArrayList array){
 		ArrayList arrayX = new ArrayList();
 
 		
@@ -343,7 +343,7 @@ public class GameLogic {
 		return arrayX;
 	}
 	
-	public ArrayList possibleMoves(int[][] board, int playerPiece){
+	public static ArrayList possibleMoves(int[][] board, int playerPiece){
 		ArrayList possibleMoves = new ArrayList();
 		ArrayList validMoveCheck;
 		for (int y = 0; y <=7; y++){ //Goes through the rows
@@ -360,7 +360,7 @@ public class GameLogic {
 		
 	}
 	
-	public void flipPieces(int[][] board, ArrayList piecesToFlip, int pieceColor){
+	public static void flipPieces(int[][] board, ArrayList piecesToFlip, int pieceColor){
 		//Unpack piecesToFlip
 		ArrayList piecesY = unpackArrayY(piecesToFlip);
 		ArrayList piecesX = unpackArrayX(piecesToFlip);
@@ -369,25 +369,37 @@ public class GameLogic {
 		}
 	}
 	
-	public int winnerChecker(int[][] board){
-		int white = 0;
-		int black = 0;
-		int tie = 3;
+	public static ArrayList winnerChecker(int[][] board){
+		ArrayList winnerInfo = new ArrayList();
+		int whiteCounter = 0;
+		int blackCounter = 0;
 		for (int y = 0; y <= 7; y++){
 			for (int x = 0; x <= 7; x++){
 				if (board[y][x] == 1)
-					white++;
+					whiteCounter++;
 				else if (board[y][x] == 2)
-					black++;
+					blackCounter++;
 			}
 		}
 		
-		if (white > black)
-			return white;
-		else if (white < black)
-			return black;
-		else
-			return tie;
+		if (whiteCounter > blackCounter){
+			winnerInfo.add("White");
+			winnerInfo.add(whiteCounter);
+			winnerInfo.add(blackCounter);
+			return winnerInfo;
+		}
+		else if (whiteCounter < blackCounter){
+			winnerInfo.add("Black");
+			winnerInfo.add(whiteCounter);
+			winnerInfo.add(blackCounter);
+			return winnerInfo;
+		}		
+		else{
+			winnerInfo.add("Tie");
+			winnerInfo.add(whiteCounter);
+			winnerInfo.add(blackCounter);
+			return winnerInfo;
+		}
 					
 	}
 	
