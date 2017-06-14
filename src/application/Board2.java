@@ -88,13 +88,22 @@ public class Board2 {
 						if (piecesToFlip.size() > 0){ // Checks to see if player entered a valid move
 							GameLogic.flipPieces(board, piecesToFlip, turn); // Flips the pieces to white
 							turn = 2; // Changes the turn to black
+							System.out.print("beforeeeeeeeeee  ");
+							System.out.println(System.currentTimeMillis());
 							drawBoard(board, gc);
-							try {
-								Thread.sleep(100);
+							System.out.println(System.currentTimeMillis());
+
+							//System.out.println("draw   boooooooooaaaard  finished");
+							/*try {
+								System.out.println("draw   boooooooooaaaard  finished");
+
+								Thread.sleep(1000);
+						
 							} catch (InterruptedException e1) {
 								// TODO Auto-generated catch block
 								e1.printStackTrace();
-							}
+							}*/
+							System.out.println(System.currentTimeMillis());
 							
 						}else{} //NoOp wait for valid input
 					}else{ // Enters this else clause if there are no valid moves
@@ -105,14 +114,16 @@ public class Board2 {
 				}if (turn == 2){ // turn for black
 					if (GameLogic.possibleMoves(board, turn).size() > 0){ // Checks to see if there are any valid moves
 						skips = 0; //Resets the number of skips if there are valid moves
-						computerMove = compAI.randomAlgorithm(board, turn); // Computer AI chooses a move
+						computerMove = ComputerAI.randomAlgorithm(board, turn); // Computer AI chooses a move
 						computerY = (int) computerMove.get(0); 
 						computerX = (int) computerMove.get(1);
 						if (GameLogic.validMove(board, turn, computerY, computerX).size() > 0){
 							GameLogic.flipPieces(board, GameLogic.validMove(board, turn, computerY, computerX), turn);
 							turn = 1;
+				
 							drawBoard(board, gc);
-							printBoard(); // Print the board at the end of computers turn
+							System.out.println("aaaaaaaaaaaaaaaaaaaaaaaa");
+							//printBoard(); // Print the board at the end of computers turn
 							System.out.println("");
 							
 
