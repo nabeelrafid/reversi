@@ -3,7 +3,7 @@ package application;
 import java.util.ArrayList;
 
 public class GameLogic {
-	public static ArrayList validMove(int[][] board, int playerPiece, int indexY, int indexX){
+	public static ArrayList validMove(int[][] board, int playerPiece, int indexY, int indexX){ // Returns pieces to flip
 		ArrayList piecesToFlip = new ArrayList();
 		boolean validDirection = false;
 		int opponentPiece;
@@ -39,12 +39,11 @@ public class GameLogic {
 				}
 				
 								
-				if (validDirection) {
-					for (int i = indexX + 1; i < index; i++){
+				if (validDirection) { 
+					for (int i = indexX + 1; i < index; i++){ // Stores the pieces to flip
 						piecesToFlip.add(indexY);
 						piecesToFlip.add(i);
 					}
-					//validDirection = false;
 				}
 			}
 		} catch(Exception e) {}//NoOp
@@ -53,7 +52,7 @@ public class GameLogic {
 		try{
 
 			
-			if (board[indexY][indexX-1] == opponentPiece){ // checks to see if piece right to the chosen tile is an opponent piece
+			if (board[indexY][indexX-1] == opponentPiece){ // checks to see if piece left to the chosen tile is an opponent piece
 				int index = 0;
 				for (int i = indexX - 2; i >= 0; i--){
 					if (board[indexY][i] == 0){
@@ -72,11 +71,10 @@ public class GameLogic {
 				
 				
 				if (validDirection) {
-					for (int i = indexX - 1; i > index; i--){
+					for (int i = indexX - 1; i > index; i--){ // Stores the pieces to flip
 						piecesToFlip.add(indexY);
 						piecesToFlip.add(i);
 					}
-					//validDirection = false;
 				}
 			}
 		} catch(Exception e) {}//NoOp
@@ -105,12 +103,12 @@ public class GameLogic {
 			
 				
 				if (validDirection){
-					for (int i = indexY + 1; i < index; i++) {
+					for (int i = indexY + 1; i < index; i++) { // Stores the pieces to flip
 						piecesToFlip.add(i);
 						piecesToFlip.add(indexX);
 
 					}
-					//validDirection = false;
+
 				}
 			}
 		} catch(Exception e) {}//NoOp
@@ -119,7 +117,7 @@ public class GameLogic {
 		//Check upwards of chosen piece
 		try{
 			
-			if (board[indexY - 1][indexX] == opponentPiece){//Checks to see if piece right to the chosen tile is an opponent piece
+			if (board[indexY - 1][indexX] == opponentPiece){//Checks to see if piece upwards to the chosen tile is an opponent piece
 				int index = 0;
 				for (int i = indexY - 2; i >= 0; i--){
 					if (board[i][indexX] == 0){
@@ -136,14 +134,11 @@ public class GameLogic {
 				}
 				
 				if (validDirection){
-		
-					for (int i = indexY - 1; i > index; i--){
-				
+					for (int i = indexY - 1; i > index; i--){ // Stores the pieces to flip
 						piecesToFlip.add(i);
 						piecesToFlip.add(indexX);
 
 					}
-					//validDirection = false;
 				}
 			}
 		}catch(Exception e){}
@@ -176,13 +171,11 @@ public class GameLogic {
 				indexY = indexYTemp; // resets the indexY value for collection of the pieces to flip
 				indexY -= 1;
 				if (validDirection) {
-					for (int i = indexX - 1; i > finalIndexX && indexY > finalIndexY; i--){
-						
+					for (int i = indexX - 1; i > finalIndexX && indexY > finalIndexY; i--){ // Stores the pieces to flip
 						piecesToFlip.add(indexY); 
 						piecesToFlip.add(i);
 						indexY --;
 					}
-					//validDirection = false;
 				}
 			}
 		} catch(Exception e) {}//NoOp
@@ -190,10 +183,10 @@ public class GameLogic {
 		// checks diagonally up right of placed piece
 		try{
 			
-			if (board[indexY - 1][indexX + 1] == opponentPiece) { // checks to see if piece diagonally up left to the chosen tile is an opponent piece
+			if (board[indexY - 1][indexX + 1] == opponentPiece) { // checks to see if piece diagonally up right to the chosen tile is an opponent piece
 				int finalIndexX = 0;
 				int finalIndexY = 0;
-				indexY -= 2; // -2 compensates for the -2 used in the for loop for indexX
+				indexY -= 2; // 2 compensates for the 2 used in the for loop for indexX
 				for (int i = indexX + 2; i <= 7; i++) {
 					if (board[indexY][i] == 0){ // checks to see if there is a blank space b/t the intended capture pieces
 						validDirection = false;
@@ -215,13 +208,11 @@ public class GameLogic {
 				indexY = indexYTemp; // resets the indexY value for collection of the pieces to flip
 				indexY -= 1;
 				if (validDirection) {
-					for (int i = indexX + 1; i < finalIndexX && indexY > finalIndexY; i++){
-						
+					for (int i = indexX + 1; i < finalIndexX && indexY > finalIndexY; i++){ // Stores the pieces to flip
 						piecesToFlip.add(indexY); 
 						piecesToFlip.add(i);
 						indexY --;
 					}
-					//validDirection = false;
 				}
 			}
 		} catch(Exception e) {}//NoOp
@@ -231,7 +222,7 @@ public class GameLogic {
 		// checks diagonally down left of placed piece
 		try{
 			
-			if (board[indexY + 1][indexX - 1] == opponentPiece) { // checks to see if piece diagonally up left to the chosen tile is an opponent piece
+			if (board[indexY + 1][indexX - 1] == opponentPiece) { // checks to see if piece diagonally down left to the chosen tile is an opponent piece
 				int finalIndexX = 0;
 				int finalIndexY = 0;
 				indexY += 2; // -2 compensates for the -2 used in the for loop for indexX
@@ -257,7 +248,7 @@ public class GameLogic {
 				indexY += 1;
 				if (validDirection) {
 					
-					for (int i = indexX - 1; i > finalIndexX && indexY < finalIndexY; i--){
+					for (int i = indexX - 1; i > finalIndexX && indexY < finalIndexY; i--){ // Stores the pieces to flip
 						
 						piecesToFlip.add(indexY); 
 						piecesToFlip.add(i);
@@ -271,7 +262,7 @@ public class GameLogic {
 		// checks diagonally down right of placed piece
 		try{
 			
-			if (board[indexY + 1][indexX + 1] == opponentPiece) { // checks to see if piece diagonally up left to the chosen tile is an opponent piece
+			if (board[indexY + 1][indexX + 1] == opponentPiece) { // checks to see if piece diagonally down right to the chosen tile is an opponent piece
 				int finalIndexX = 0;
 				int finalIndexY = 0;
 				indexY += 2; // -2 compensates for the -2 used in the for loop for indexX
@@ -297,16 +288,17 @@ public class GameLogic {
 				indexY += 1;
 				if (validDirection) {
 
-					for (int i = indexX + 1; i < finalIndexX && indexY < finalIndexY; i++){
+					for (int i = indexX + 1; i < finalIndexX && indexY < finalIndexY; i++){ // Stores the pieces to flip
 						
 						piecesToFlip.add(indexY); 
 						piecesToFlip.add(i);
 						indexY ++;
 					}
-					//validDirection = false;
+
 				}
 			}
 		} catch(Exception e) {}//NoOp
+		
 		
 		if (piecesToFlip.size() > 0){
 			piecesToFlip.add(indexYTemp);
@@ -323,7 +315,7 @@ public class GameLogic {
 	}
 	
 	// Separates array into individual x and y arrays
-	public static ArrayList unpackArrayY(ArrayList array){
+	public static ArrayList unpackArrayY(ArrayList array){ //Takes an array and creates a new array with just the y values
 		ArrayList arrayY = new ArrayList();
 
 		
@@ -333,7 +325,7 @@ public class GameLogic {
 		return arrayY;
 	}
 	
-	public static ArrayList unpackArrayX(ArrayList array){
+	public static ArrayList unpackArrayX(ArrayList array){ //Takes an array and creates a new array with just the x values
 		ArrayList arrayX = new ArrayList();
 
 		
@@ -343,7 +335,7 @@ public class GameLogic {
 		return arrayX;
 	}
 	
-	public static ArrayList possibleMoves(int[][] board, int playerPiece){
+	public static ArrayList possibleMoves(int[][] board, int playerPiece){ // Creates an array with all the possible moves
 		ArrayList possibleMoves = new ArrayList();
 		ArrayList validMoveCheck;
 		for (int y = 0; y <=7; y++){ //Goes through the rows
@@ -360,7 +352,7 @@ public class GameLogic {
 		
 	}
 	
-	public static void flipPieces(int[][] board, ArrayList piecesToFlip, int pieceColor){
+	public static void flipPieces(int[][] board, ArrayList piecesToFlip, int pieceColor){ // Flips the necessary pieces
 		//Unpack piecesToFlip
 		ArrayList piecesY = unpackArrayY(piecesToFlip);
 		ArrayList piecesX = unpackArrayX(piecesToFlip);
@@ -369,7 +361,7 @@ public class GameLogic {
 		}
 	}
 	
-	public static ArrayList winnerChecker(int[][] board){
+	public static ArrayList winnerChecker(int[][] board){ // Returns winner information
 		ArrayList winnerInfo = new ArrayList();
 		int whiteCounter = 0;
 		int blackCounter = 0;
