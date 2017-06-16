@@ -31,7 +31,7 @@ public class ComputerAI extends GameLogic{
 			}
 		}
 		
-		// Creates an array that will store the amount of pieces that will be flipped with each move
+		// Creates an array that will store the amount of pieces that will be flipped with each move balcita
 		for (int i = 0; i < flipAmount.length; i++){
 			flipAmount[i] = validMove(board, playerPiece, i, i).size();
 		}
